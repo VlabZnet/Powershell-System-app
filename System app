@@ -1,319 +1,244 @@
-#Loading Assemblies########################################################################
+#Loading Assemblies#
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-#Creating form############################################################################
-$Form = New-Object system.Windows.Forms.Form 
-$form.Size = New-Object System.Drawing.Size(800,800) 
-$Form.Text = "System App"
-$Form.TopMost = $true 
-$Form.FormBorderStyle = "FixedDialog" 
-$Form.MaximizeBox = $true 
-$Form.MinimizeBox = $true
-$Form.ControlBox = $true
-$Form.StartPosition = "CenterScreen" 
+#Creating The Base Form#
+$Form = New-Object System.Windows.Forms.Form
+$Form.Size = New-Object System.Drawing.Size(700,500)
+$Form.Text = "System Checker"
+$Form.TopMost = $true
+$Form.StartPosition = "CenterScreen"
+$Form.BackColor = "#353469"
 
-#Set1#
-$lbl1 = New-Object System.Windows.Forms.Label
-$lbl1.Text = "Computer Name:"
-$lbl1.Location = New-Object System.Drawing.Point(10,10)
-$lbl1.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl1.Autosize = $true
-$Form.Controls.Add($lbl1)
+#Adding Label#
+$lbl = New-Object System.Windows.Forms.Label
+$lbl.Text = "Computer Name:"
+$lbl.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl.AutoSize = $true
+$lbl.ForeColor = "#ffffff"
+$lbl.Location = New-Object System.Drawing.Point(10,20)
 
+$Form.Controls.Add($lbl)
+
+#Adding TextBox#
+$txtbox = New-Object System.Windows.Forms.TextBox
+$txtbox.Text = (get-ciminstance win32_computersystem).Caption
+$txtbox.Location = New-Object System.Drawing.Point(200,21)
+$txtbox.Font = New-Object System.Drawing.Font("Helvetica",14)
+$txtbox.ForeColor = "#ffffff"
+$txtbox.Size = New-Object System.Drawing.Size(200,10)
+$txtbox.BackColor = "#353469"
+$txtbox.ReadOnly = $true
+$txtbox.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox)
+
+#Adding Label2#
 $lbl2 = New-Object System.Windows.Forms.Label
-$lbl2.Text = (get-ciminstance win32_computersystem).Caption
-$lbl2.Location = New-Object System.Drawing.Point(190,10)
-$lbl2.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl2.Autosize = $true
+$lbl2.Text = "Manufacturer:"
+$lbl2.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl2.AutoSize = $true
+$lbl2.ForeColor = "#ffffff"
+$lbl2.Location = New-Object System.Drawing.Point(10,50)
+
 $Form.Controls.Add($lbl2)
 
-#Set2#
+#Adding TextBox3#
+$txtbox2 = New-Object System.Windows.Forms.TextBox
+$txtbox2.Text = (Get-CimInstance Win32_ComputerSystem).Manufacturer
+$txtbox2.Location = New-Object System.Drawing.Point(200,51)
+$txtbox2.Font = New-Object System.Drawing.Font("Helvetica",14)
+$txtbox2.ForeColor = "#ffffff"
+$txtbox2.Size = New-Object System.Drawing.Size(200,10)
+$txtbox2.BackColor = "#353469"
+$txtbox2.ReadOnly = $true
+$txtbox2.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox2)
+
+#Adding Label3#
 $lbl3 = New-Object System.Windows.Forms.Label
 $lbl3.Text = "Model:"
-$lbl3.Location = New-Object System.Drawing.Point(10,35)
-$lbl3.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl3.Autosize = $true
-$form.Controls.Add($lbl3)
+$lbl3.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl3.AutoSize = $true
+$lbl3.ForeColor = "#ffffff"
+$lbl3.Location = New-Object System.Drawing.Point(10,80)
 
+$Form.Controls.Add($lbl3)
+
+#Adding TextBox3#
+$txtbox3 = New-Object System.Windows.Forms.TextBox
+$txtbox3.Text = (Get-CimInstance Win32_ComputerSystem).Model
+$txtbox3.Location = New-Object System.Drawing.Point(200,81)
+$txtbox3.Font = New-Object System.Drawing.Font("Helvetica",14)
+$txtbox3.ForeColor = "#ffffff"
+$txtbox3.Size = New-Object System.Drawing.Size(200,10)
+$txtbox3.BackColor = "#353469"
+$txtbox3.ReadOnly = $true
+$txtbox3.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox3)
+
+#Adding Label4#
 $lbl4 = New-Object System.Windows.Forms.Label
-$lbl4.Text = (get-ciminstance win32_computersystem).Model
-$lbl4.Location = New-Object System.Drawing.Point(190,35)
-$lbl4.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl4.Autosize = $true
+$lbl4.Text = "Serial Number:"
+$lbl4.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl4.AutoSize = $true
+$lbl4.ForeColor = "#ffffff"
+$lbl4.Location = New-Object System.Drawing.Point(10,110)
+
 $Form.Controls.Add($lbl4)
 
-#Set3#
+#Adding TextBox4#
+$txtbox4 = New-Object System.Windows.Forms.TextBox
+$txtbox4.Text = (get-ciminstance win32_Bios).SerialNumber
+$txtbox4.Location = New-Object System.Drawing.Point(200,111)
+$txtbox4.Font = New-Object System.Drawing.Font("Helvetica",14)
+$txtbox4.ForeColor = "#ffffff"
+$txtbox4.Size = New-Object System.Drawing.Size(200,10)
+$txtbox4.BackColor = "#353469"
+$txtbox4.ReadOnly = $true
+$txtbox4.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox4)
+
+#Adding Label5#
 $lbl5 = New-Object System.Windows.Forms.Label
-$lbl5.Text = "Service Tag:"
-$lbl5.Location = New-Object System.Drawing.Point(10,60)
-$lbl5.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl5.Autosize = $true
+$lbl5.Text = "Domain:"
+$lbl5.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl5.AutoSize = $true
+$lbl5.ForeColor = "#ffffff"
+$lbl5.Location = New-Object System.Drawing.Point(10,140)
+
 $Form.Controls.Add($lbl5)
 
+#Adding TextBox5#
+$txtbox5 = New-Object System.Windows.Forms.TextBox
+$txtbox5.Text = (Get-CimInstance -ClassName Win32_ComputerSystem).Domain
+$txtbox5.Location = New-Object System.Drawing.Point(200,141)
+$txtbox5.Font = New-Object System.Drawing.Font("Helvetica",14)
+$txtbox5.ForeColor = "#ffffff"
+$txtbox5.Size = New-Object System.Drawing.Size(200,10)
+$txtbox5.BackColor = "#353469"
+$txtbox5.ReadOnly = $true
+$txtbox5.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox5)
+
+#Adding Label6#
 $lbl6 = New-Object System.Windows.Forms.Label
-$lbl6.Text = (get-ciminstance win32_SystemEnclosure).SerialNumber
-$lbl6.Location = New-Object System.Drawing.Point(190,60)
-$lbl6.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl6.Autosize = $true
+$lbl6.Text = "Operating System:"
+$lbl6.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl6.AutoSize = $true
+$lbl6.ForeColor = "#ffffff"
+$lbl6.Location = New-Object System.Drawing.Point(10,180)
+
 $Form.Controls.Add($lbl6)
 
-#Set4#
+#Adding TextBox6#
+$txtbox6 = New-Object System.Windows.Forms.TextBox
+$txtbox6.Text = (Get-CimInstance Win32_OperatingSystem).Caption -replace "Microsoft", "" 
+$txtbox6.Location = New-Object System.Drawing.Point(195,181)
+$txtbox6.Font = New-Object System.Drawing.Font("Helvetica",16)
+$txtbox6.ForeColor = "#ffffff"
+$txtbox6.Size = New-Object System.Drawing.Size(200,10)
+$txtbox6.BackColor = "#353469"
+$txtbox6.ReadOnly = $true
+$txtbox6.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox6)
+
+#Adding Label7#
 $lbl7 = New-Object System.Windows.Forms.Label
-$lbl7.Text = "Manufacturer:"
-$lbl7.Location = New-Object System.Drawing.Point(10,85)
-$lbl7.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl7.Autosize = $true
+$lbl7.Text = "OS Version:"
+$lbl7.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl7.AutoSize = $true
+$lbl7.ForeColor = "#ffffff"
+$lbl7.Location = New-Object System.Drawing.Point(10,210)
+
 $Form.Controls.Add($lbl7)
 
+#Adding TextBox7#
+$txtbox7 = New-Object System.Windows.Forms.TextBox
+$txtbox7.Text = (Get-CimInstance Win32_OperatingSystem).version,"-", (Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
+$txtbox7.Location = New-Object System.Drawing.Point(200,211)
+$txtbox7.Font = New-Object System.Drawing.Font("Helvetica",16)
+$txtbox7.ForeColor = "#ffffff"
+$txtbox7.Size = New-Object System.Drawing.Size(200,10)
+$txtbox7.BackColor = "#353469"
+$txtbox7.ReadOnly = $true
+$txtbox7.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox7)
+
+
+#Adding Label8#
 $lbl8 = New-Object System.Windows.Forms.Label
-$lbl8.Text = (get-ciminstance win32_computersystem).Manufacturer
-$lbl8.Location = New-Object System.Drawing.Point(190,85)
-$lbl8.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl8.Autosize = $true
+$lbl8.Text = "Processor (CPU):"
+$lbl8.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl8.AutoSize = $true
+$lbl8.ForeColor = "#ffffff"
+$lbl8.Location = New-Object System.Drawing.Point(10,250)
+
 $Form.Controls.Add($lbl8)
 
-#Set5#
+#Adding TextBox8#
+$txtbox8 = New-Object System.Windows.Forms.TextBox
+$txtbox8.Text = (Get-CimInstance -Class CIM_Processor).Name
+$txtbox8.Location = New-Object System.Drawing.Point(200,251)
+$txtbox8.Font = New-Object System.Drawing.Font("Helvetica",16)
+$txtbox8.ForeColor = "#ffffff"
+$txtbox8.Size = New-Object System.Drawing.Size(450,10)
+$txtbox8.BackColor = "#353469"
+$txtbox8.ReadOnly = $true
+$txtbox8.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox8)
+
+#Adding Label9#
 $lbl9 = New-Object System.Windows.Forms.Label
-$lbl9.Text = "Operating System:"
-$lbl9.Location = New-Object System.Drawing.Point(10,110)
-$lbl9.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl9.Autosize = $true
+$lbl9.Text = "CPU Model"
+$lbl9.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl9.AutoSize = $true
+$lbl9.ForeColor = "#ffffff"
+$lbl9.Location = New-Object System.Drawing.Point(10,280)
+
 $Form.Controls.Add($lbl9)
 
+#Adding TextBox10#
+$txtbox9 = New-Object System.Windows.Forms.TextBox
+$txtbox9.Text = (Get-CimInstance -Class CIM_Processor).Caption
+$txtbox9.Location = New-Object System.Drawing.Point(200,281)
+$txtbox9.Font = New-Object System.Drawing.Font("Helvetica",16)
+$txtbox9.ForeColor = "#ffffff"
+$txtbox9.Size = New-Object System.Drawing.Size(300,10)
+$txtbox9.BackColor = "#353469"
+$txtbox9.ReadOnly = $true
+$txtbox9.BorderStyle = "None"
+
+$Form.Controls.Add($txtbox9)
+
+#Adding Label10#
 $lbl10 = New-Object System.Windows.Forms.Label
-$lbl10.Text = (Get-CimInstance Win32_OperatingSystem).Caption -replace "Microsoft", "" 
-$lbl10.Location = New-Object System.Drawing.Point(185,110)
-$lbl10.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl10.Autosize = $true
+$lbl10.Text = "RAM(GB)"
+$lbl10.Font = New-Object System.Drawing.Font("Helvetica",12)
+$lbl10.AutoSize = $true
+$lbl10.ForeColor = "#ffffff"
+$lbl10.Location = New-Object System.Drawing.Point(10,320)
+
 $Form.Controls.Add($lbl10)
 
-#Set6#
-$lbl11 = New-Object System.Windows.Forms.Label
-$lbl11.Text = "OS Version:"
-$lbl11.Location = New-Object System.Drawing.Point(10,135)
-$lbl11.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl11.Autosize = $true
-$Form.Controls.Add($lbl11)
+#Adding TextBox10#
+$txtbox10 = New-Object System.Windows.Forms.TextBox
+$txtbox10.Text = (Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum /1gb
+$txtbox10.Location = New-Object System.Drawing.Point(200,321)
+$txtbox10.Font = New-Object System.Drawing.Font("Helvetica",16)
+$txtbox10.ForeColor = "#ffffff"
+$txtbox10.Size = New-Object System.Drawing.Size(300,10)
+$txtbox10.BackColor = "#353469"
+$txtbox10.ReadOnly = $true
+$txtbox10.BorderStyle = "None"
 
-$lbl12 = New-Object System.Windows.Forms.Label
-$lbl12.Text = (Get-CimInstance Win32_OperatingSystem).version,"-", (Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
-$lbl12.Location = New-Object System.Drawing.Point(190,135)
-$lbl12.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl12.Autosize = $true
-$Form.Controls.Add($lbl12)
+$Form.Controls.Add($txtbox10)
 
-#Set7#
-$lbl13 = New-Object System.Windows.Forms.Label
-$lbl13.Text = "Domain Name:"
-$lbl13.Location = New-Object System.Drawing.Point(10,160)
-$lbl13.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl13.Autosize = $true
-$Form.Controls.Add($lbl13)
-
-$lbl14 = New-Object System.Windows.Forms.Label
-$lbl14.Text = (Get-CimInstance -ClassName Win32_ComputerSystem).Domain
-$lbl14.Location = New-Object System.Drawing.Point(190,160)
-$lbl14.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl14.Autosize = $true
-$Form.Controls.Add($lbl14)
-
-#Set8#
-$lbl15 = New-Object System.Windows.Forms.Label
-$lbl15.Text = "OS Architecture"
-$lbl15.Location = New-Object System.Drawing.Point(10,185)
-$lbl15.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl15.Autosize = $true
-$Form.Controls.Add($lbl15)
-
-$lbl16 = New-Object System.Windows.Forms.Label
-$lbl16.Text = (Get-CimInstance Win32_OperatingSystem).OSArchitecture
-$lbl16.Location = New-Object System.Drawing.Point(190,185)
-$lbl16.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl16.Autosize = $true
-$Form.Controls.Add($lbl16)
-
-#Set9#
-$lbl17 = New-Object System.Windows.Forms.Label
-$lbl17.Text = "Bios Version:"
-$lbl17.Location = New-Object System.Drawing.Point(10,210)
-$lbl17.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl17.Autosize = $true
-$Form.Controls.Add($lbl17)
-
-$lbl18 = New-Object System.Windows.Forms.Label
-$lbl18.Text = (Get-WmiObject win32_bios).Version, (Get-WmiObject win32_bios).SMBIOSBIOSVersion, (Get-WmiObject win32_bios).Manufacturer
-$lbl18.Location = New-Object System.Drawing.Point(190,210)
-$lbl18.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl18.Autosize = $true
-$Form.Controls.Add($lbl18)
-
-#Set9#
-$lbl19 = New-Object System.Windows.Forms.Label
-$lbl19.Text = "Bios Firmware Type:"
-$lbl19.Location = New-Object System.Drawing.Point(10,235)
-$lbl19.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl19.Autosize = $true
-$Form.Controls.Add($lbl19)
-
-$lbl20= New-Object System.Windows.Forms.Label
-$lbl20.Text = (Get-ComputerInfo).BiosFirmwareType
-$lbl20.Location = New-Object System.Drawing.Point(190,235)
-$lbl20.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl20.Autosize = $true
-$Form.Controls.Add($lbl20)
-
-#Set10#
-$lbl21 = New-Object System.Windows.Forms.Label
-$lbl21.Text = "Processor (CPU):"
-$lbl21.Location = New-Object System.Drawing.Point(10,260)
-$lbl21.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl21.Autosize = $true
-$Form.Controls.Add($lbl21)
-
-$lbl22= New-Object System.Windows.Forms.Label
-$lbl22.Text = (Get-CimInstance -Class CIM_Processor).Caption
-$lbl22.Location = New-Object System.Drawing.Point(190,260)
-$lbl22.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl22.Autosize = $true
-$Form.Controls.Add($lbl22)
-
-#RAM Set1#
-$lbl23 = New-Object System.Windows.Forms.Label
-$lbl23.Text = "Physical Memory (GB):"
-$lbl23.Location = New-Object System.Drawing.Point(10,285)
-$lbl23.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl23.Autosize = $true
-$Form.Controls.Add($lbl23)
-
-$lbl24= New-Object System.Windows.Forms.Label
-$lbl24.Text = (Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum /1gb
-$lbl24.Location = New-Object System.Drawing.Point(190,285)
-$lbl24.Font = New-Object System.Drawing.Font("Georgia",12)
-$lbl24.Autosize = $true
-$Form.Controls.Add($lbl24)
-
-
-#Hardware function#
-Function gather-info {
-
-$selection = $dropdown.SelectedItem.ToString()
-
-if ($selection -eq "Net Adapters") {
-
-$outputbox.Text = Get-NetAdapter | Select-Object Name, IfNAme, InterfaceIndex, 
-                                   Status, MediaType, LinkSpeed, FullDuplex, DriverFileName, 
-                                   DriverInformation, DriverDate, DriverProvider, 
-                                   MacAddress | Sort-Object Status -Descending |Format-List | Out-String
-}
-
-
-elseif ($selection -eq "Net IP") {
-$outputbox.Text = Get-NetIPAddress | Select-Object InterfaceIndex, AddressFamily, Type, 
-                                     IPv4Address, IPv6Address, PrefixLength,
-                                     PrefixOrigin | Sort-Object IPv4Address -Descending | Format-List | Out-String
-}
-
-elseif ($selection -eq "Disk Info") {
-#Hardware Set2#
-$outputbox.Text =  Get-WmiObject -class win32_logicaldisk | Select-Object DeviceID, VolumeName, Description, FileSystem, 
-                                                           @{Name="Size(GB)"; Expression={[math]::round($_.size/1GB, 2)}},
-                                                           @{Name="Freespace(GB)"; Expression={[math]::round($_.FreeSpace/1GB, 2)}} | Out-String
-}
-
-elseif ($selection -eq "Device Manager") {
-#Hardware Set2#
-$outputbox.Text =  Get-PnpDevice | Select-Object Caption, Class, Manufacturer, HardwareID, Problem |  Sort-Object -Property Class | Out-String
-}
-
-elseif ($selection -eq "Processor") {
-#Hardware Set2#
-$outputbox.Text = Get-CimInstance -Class CIM_Processor | Select-Object DeviceID, Role, Manufacturer, Caption, Model, Name,
-                                                         @{Label = "Clock Speed"; Expression = {($_).CurrentClockSpeed}},
-                                                         @{Label = "Max Clock Speed"; Expression = {($_).MaxClockSpeed}},
-                                                         @{Label = "L2 Cache Size"; Expression = {($_).L2CacheSize}},
-                                                         @{Label = "L2 Cache Speed"; Expression = {($_).L2CacheSpeed}},
-                                                         @{Label = "L3 Cache Size"; Expression = {($_).L3CacheSize}},
-                                                         @{Label = "L3 Cache Speed"; Expression = {($_).L3CacheSpeed}},
-                                                         @{Label = "Socket Designation"; Expression = {($_).SocketDesignation}},
-                                                         @{Label = "Number of cores"; Expression = {($_).NumberOfCores}},
-                                                         @{Label = "Number of Logical Processors"; Expression = {($_).NumberOfLogicalProcessors}},
-                                                         @{Label = "Thread Count"; Expression = {($_).ThreadCount}},
-                                                         @{Label = "Address Width"; Expression = {($_).AddressWidth}} | Out-String
-}
-
-
-elseif ($selection -eq "GPU") {
-#Hardware Set2#
-$outputbox.Text =  Get-CimInstance Win32_VideoController | Select-Object @{Label = "Adapter Compatibility"; Expression = {($_).AdapterCompatibility}},
-                                                           @{Label = "Video Processor"; Expression = {($_).VideoProcessor}},
-                                                           @{Label = "Name"; Expression = {($_).Caption}},
-                                                           @{Label = "Driver Version"; Expression = {($_).DriverVersion}},
-                                                           @{Label = "Video Mode Description"; Expression = {($_).VideoModeDescription}},
-                                                           @{Label = "Current Bits Per Pixel"; Expression = {($_).CurrentBitsPerPixel}},
-                                                           @{Label = "Current Horizontal Resolution"; Expression = {($_).CurrentHorizontalResolution}},
-                                                           @{Label = "Current Vertical Resolution"; Expression = {($_).CurrentVerticalResolution}},
-                                                           @{Label = "Current Number Of Color"; Expression = {($_).CurrentNumberOfColors}},
-                                                           @{Label = "Current Refresh Rate"; Expression = {($_).CurrentRefreshRate}},
-                                                           @{Label = "Max Refresh Rate"; Expression = {($_).MaxRefreshRate}},
-                                                           @{Label = "Min Refresh Rate"; Expression = {($_).MinRefreshRate}}  | Out-String
-}
-
-elseif ($selection -eq "Physical Memory") {
-$outputbox.Text =  Get-CimInstance Win32_PhysicalMemory | Select-Object Manufacturer,
-                                                          @{Label = "Part Number"; Expression = {($_).PartNumber}},
-                                                          @{Label = "Name"; Expression = {($_).Name}},
-                                                          @{Label = "Serial Number"; Expression = {($_).SerialNumber}},
-                                                          @{Label = "RAM (GB)"; Expression = {(Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum /1gb}},
-                                                          @{Label = "Speed(MHz)"; Expression = {($_).Speed}},
-                                                          @{Label = "Configured Speed(MHz)"; Expression = {($_).ConfiguredClockSpeed}},
-                                                          @{Label = "Configured Voltage(MHz)"; Expression = {($_).ConfiguredVoltage}},
-                                                          @{Label = "Data Width"; Expression = {($_).DataWidth}} | Out-String
-}
-
-elseif ($selection -eq "Base Board") {
-$outputbox.Text =  Get-CimInstance -ClassName Win32_BaseBoard | Select-Object Manufacturer, Tag, Name, Model, 
-                                                                             Product, Version, PoweredOn, SerialNumber, 
-                                                                             Status | Out-String
-}
-
-}
-
-
-#Select label#
-$selbl1 = New-Object System.Windows.Forms.Label
-$selbl1.Text = "Gather Information:"
-$selbl1.Location = New-Object System.Drawing.Point(10,335)
-$selbl1.Font = New-Object System.Drawing.Font("Georgia",12)
-$selbl1.Autosize = $true
-$form.Controls.Add($selbl1)
-
-#Overview Dropdown#
-$dropdown = New-Object System.Windows.Forms.ComboBox
-$dropdown.Location = New-Object System.Drawing.Point(20,365)
-$dropdown.Size = New-Object System.Drawing.Size(180,20)
-$form.Controls.Add($dropdown)
-
-$DropDownMenus = @("Net Adapters", "Net IP", "Disk Info", "Device Manager", "Processor", "GPU", "Physical Memory", "Base Board")
-
-foreach ($DropDownMenu in $DropDownMenus) {
-$dropdown.Items.Add($DropDownMenu)
-}
-
-#Show Button#
-$showbtn = New-Object System.Windows.Forms.Button
-$showbtn.Text = "Show"
-$showbtn.Location = New-Object System.Drawing.Point(240,365)
-$showbtn.Size = New-Object System.Drawing.Size(75,30)
-$showbtn.Add_Click({gather-info})
-$form.Controls.Add($showbtn)
-
-#Outputbox#
-$outputbox = New-Object System.Windows.Forms.TextBox
-$outputbox.Location = New-Object System.Drawing.Point(20,410)
-$outputbox.Size = New-Object System.Drawing.Size(700,325)
-$outputbox.Multiline = $true
-$outputbox.ScrollBars = "Vertical"
-$form.Controls.Add($outputbox)
-
-[void]$Form.ShowDialog()
+$Form.ShowDialog()
